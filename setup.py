@@ -5,5 +5,6 @@ setup(
     version='0.0.1',
     packages=['app'],
     author='Lioheart',
-    requires=['flask', 'python-dotenv'],
+    python_requires='>=3.7',
+    install_requires=['flask', 'python-dotenv'],
 )
