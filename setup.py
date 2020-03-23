@@ -1,3 +1,4 @@
+"""Plik z niezbędnymi pakietami"""
 from setuptools import setup
 
 setup(
@@ -6,5 +7,5 @@ setup(
     packages=['app'],
     author='Lioheart',
     python_requires='>=3.7',
-    install_requires=['flask', 'python-dotenv'],
+    install_requires=['flask', 'python-dotenv', 'flask-wtf'],
 )
