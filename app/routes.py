@@ -129,3 +129,45 @@ def edit_profile():
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
     return render_template('edit_profile.html', title='Edit Profile', form=form)
+
+
+@app.route('/follow/<username>')
+@login_required
+def follow(username):
+    """
+    Dodaje danego użytkownika do obserwowanych dla aktualnie zalogowanego użytkownika
+    :param username: user
+    :return: przekierowanie do user lub index
+    """
+    user_follow = User.query.filter_by(username=username).first()
+    if user_follow is None:
+        flash('User {} not found.'.format(username))
+        return redirect(url_for('index'))
+    if user_follow == current_user:
+        flash('You cannot follow yourself!')
+        return redirect(url_for('user', username=username))
+    current_user.follow(user_follow)
+    db.session.commit()
+    flash('You are following {}!'.format(username))
+    return redirect(url_for('user', username=username))
+
+
+@app.route('/unfollow/<username>')
+@login_required
+def unfollow(username):
+    """
+    Usuwa danego użytkownika z obserwowanych dla aktualnie zalogowanego użytkownika
+    :param username: user
+    :return: przekierowanie do user lub index
+    """
+    user_follow = User.query.filter_by(username=username).first()
+    if user_follow is None:
+        flash('User {} not found.'.format(username))
+        return redirect(url_for('index'))
+    if user_follow == current_user:
+        flash('You cannot unfollow yourself!')
+        return redirect(url_for('user', username=username))
+    current_user.unfollow(user_follow)
+    db.session.commit()
+    flash('You are not following {}.'.format(username))
+    return redirect(url_for('user', username=username))

@@ -7,6 +7,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login
 
+followers = db.Table(
+    'followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+)
+
 
 class User(UserMixin, db.Model):
     """
@@ -20,6 +26,7 @@ class User(UserMixin, db.Model):
     posts - posty typu klucz obcy
     about_me - o mnie typu str
     last_seen - czas ostatniej wizyty typu datetime
+    followed - relacja tabeli followers typu db.Table, klucz obcy
     """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -28,6 +35,14 @@ class User(UserMixin, db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    followed = db.relationship(
+        'User',
+        secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'),
+        lazy='dynamic'
+    )
 
     def set_password(self, password):
         """
@@ -45,8 +60,47 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     def avatar(self, size):
+        """
+        Zwraca gravatar automatyczny na podstawie adresu email
+        :param size: rozmiar awatara
+        :return: link do awatara w formie .jpg
+        """
         digest = md5(self.email.lower().encode('utf-8')).hexdigest()
         return 'https://www.gravatar.com/avatar/{}?d=robohash&s={}'.format(digest, size)
+
+    def follow(self, user):
+        """
+        Służy do zaznaczenia którego użytkownika mamy obserwować
+        :param user: użytkownik, którego będziemy obserwować
+        """
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def unfollow(self, user):
+        """
+        Służy do zaznaczenia którego użytkownika mamy przestać obserwować
+        :param user: użytkownik, którego przestaniemy obserwować
+        """
+        if self.is_following(user):
+            self.followed.remove(user)
+
+    def is_following(self, user):
+        """
+        Sprawdza, czy obserwujemy danego użytkownika
+        :param user:
+        :return: zwraca wartość boolean
+        """
+        return self.followed.filter(followers.c.followed_id == user.id).count() > 0
+
+    def followed_posts(self):
+        """
+        Wyświetla wszystkie posty nasze i użytkowników, które śledzimy
+        :return: Zwraca zapytanie odnośnie postów użytkowników, których śledzimy i naszych, posortowanych według daty
+        """
+        followed = Post.query.join(followers, (followers.c.followed_id == Post.user_id)).filter(
+            followers.c.follower_id == self.id)
+        own = Post.query.filter_by(user_id=self.id)
+        return followed.union(own).order_by(Post.timestamp.desc())
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
