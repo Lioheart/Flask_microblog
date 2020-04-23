@@ -17,3 +17,4 @@ class Config:
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     ADMINS = ['caco7.lioheart@gmail.com', 'zelazek_pawel@wp.pl']
+    POSTS_PER_PAGE = 25

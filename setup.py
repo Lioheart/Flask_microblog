@@ -7,5 +7,6 @@ setup(
     packages=['app'],
     author='Lioheart',
     python_requires='>=3.7',
-    install_requires=['flask', 'python-dotenv', 'flask-wtf', 'flask-sqlalchemy', 'flask-migrate', 'flask-login'],
+    install_requires=['flask', 'python-dotenv', 'email-validator', 'flask-wtf', 'flask-sqlalchemy', 'flask-migrate',
+                      'flask-login'],
 )
