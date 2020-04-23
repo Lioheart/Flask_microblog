@@ -5,15 +5,16 @@ Flask Tutorial Microblog
  * Pierwszą rzeczą, jaką należy zrobić, to zainstalować [Python](https://www.python.org/downloads/) w wersji co
   najmniej 3.7 (koniecznie zaznacz pole add to PATH), oraz [git](https://git-scm.com/downloads).
  * Aby uruchomić PowerShell w systemie Windows 10, kliknij prawym przyciskiem myszy w start, następnie wybierz
-  Program Windows PowerShell (Administrator). W przypadku użycia konsoli cmd, należy także uruchomić z uprawnieniami
-   administratora.
+  Program Windows PowerShell.
  * Należy pobrać repozytorium, wpisując w terminal komendę 
  `git clone https://github.com/Lioheart/Flask_microblog.git`
- * Następnie przechodzimy do katalogu `cd Flask_mikroblog`
+ * Następnie przechodzimy do katalogu `cd Flask_mikroblog` lub dla PowerShell `cd .\Flask_mikroblog`
  * W danym folderze uruchamiamy komendę, aby zainicjować utworzenie venv `python -m venv venv`
- * Zainstaluj paczkę, dzięki której utworzysz wirtualne środowisko `pip install virtualenv`
- * Następnie tworzymy venv za pomocą komendy `virtualenv venv`
- * Należy teraz aktywować venv za pomocą komendy (tylko linux i macOS) `source venv/bin/activate`
+ * Uruchom drugie okno konsoli lub PowerShella w trybie administratora.
+ * Zainstaluj paczkę (tylko z uprawnieniami administratora), dzięki której utworzysz wirtualne środowisko `pip install
+  virtualenv`
+ * Przejdź do pierwszego okna i utwórz virtual env za pomocą komendy `virtualenv venv`
+ * Należy teraz aktywować virtual env za pomocą komendy (tylko linux i macOS) `source venv/bin/activate`
  * W przypadku, gdy używamy konsoli cmd Microsoft Windows należy użyć komendy `venv\Scripts\activate`
 
 ### Uwaga 
@@ -36,7 +37,7 @@ W przypadku, gdy wykonujemy komendy poprzez Windows PowerShell należy wykonać 
 ## Instalacja pakietów
 Aby zainstalować niezbędne pakiety, wystarczy użyć poniższej komendy:
 ```
-python requirements.txt install
+pip install -r requirements.txt
 ```
  
 ## Uruchamianie
