@@ -1,11 +1,13 @@
 """Obiektowy model bazy danych SQLAlchemy"""
 from datetime import datetime
 from hashlib import md5
+from time import time
 
+import jwt
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app import db, login
+from app import db, login, app
 
 followers = db.Table(
     'followers',
@@ -101,6 +103,28 @@ class User(UserMixin, db.Model):
             followers.c.follower_id == self.id)
         own = Post.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Post.timestamp.desc())
+
+    def get_reset_password_token(self, expires_in=600):
+        """
+        Metoda generująca token służący do resetowania hasła
+        :param expires_in: czas życia tokena int
+        :return: token jwt
+        """
+        return jwt.encode({'reset_password': self.id, 'exp': time() + expires_in}, app.config['SECRET_KEY'],
+                          algorithm='HS256').decode('utf-8')
+
+    @staticmethod
+    def verify_reset_password_token(token):
+        """
+        Metoda sprawdzająca, czy token został poprawnie zweryfikowany
+        :param token: jwt
+        :return: użytkownik o podanym id
+        """
+        try:
+            id_token = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])['reset_password']
+        except Exception:
+            return
+        return User.query.get(id_token)
 
     def __repr__(self):
         return '<User {}>'.format(self.username)

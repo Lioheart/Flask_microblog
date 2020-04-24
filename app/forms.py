@@ -66,3 +66,16 @@ class PostForm(FlaskForm):
     """Klasa opisuje formularz postów użytkownika"""
     post = TextAreaField('Say something new', validators=[DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Submit')
+
+
+class ResetPasswordRequestForm(FlaskForm):
+    """Klasa opisuje formularz resetowania hasła"""
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+
+class ResetPasswordForm(FlaskForm):
+    """Klasa reprezentująca pola służące do resetowania hasłą"""
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Request Password Reset')
