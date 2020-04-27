@@ -6,7 +6,8 @@
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=post.author.username) }}">{{ post.author.username }}</a> says:
+            <a href="{{ url_for('user', username=post.author.username) }}">{{ post.author.username }}</a>
+            sayd {{ moment(post.timestamp).fromNow() }}:
             <br>{{ post.body }}</td>
     </tr>
 </table>

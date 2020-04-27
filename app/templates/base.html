@@ -48,3 +48,10 @@
         {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
+
+{% block scripts %}
+    {# Ważne jest aby użyć super() w momencie używania bloku scripts #}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.locale(auto_detect=True) }}
+{% endblock %}
