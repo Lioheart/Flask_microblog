@@ -3,7 +3,8 @@ import logging
 import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
-from flask import Flask
+from flask import Flask, request
+from flask_babel import Babel
 from flask_login import LoginManager
 from flask_mail import Mail
 from flask_migrate import Migrate
@@ -22,6 +23,17 @@ login.login_view = 'login'  # działa jak url_for()
 mail = Mail(app)
 bootstrap = Bootstrap(app)
 moment = Moment(app)
+babel = Babel(app)
+
+
+@babel.localeselector
+def get_locale():
+    """
+    Służy do pobrania odpowiedniego tłumaczenia dla konkretnych języków
+    :return: najlepsze dopasowanie do języka
+    """
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 if not app.debug:
     # Wysyłanie błędów poprzez email
@@ -44,7 +56,7 @@ if not app.debug:
     # Tworzenie pliku log
     if not os.path.exists('logs'):
         os.mkdir('logs')
-    file_handler = RotatingFileHandler('logs/microblog.log',maxBytes=10240, backupCount=10)
+    file_handler = RotatingFileHandler('logs/microblog.log', maxBytes=10240, backupCount=10)
     file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
