@@ -1,4 +1,4 @@
-2020-04-23 10:43:30,654 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:43:55,549 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -17,7 +17,7 @@ Traceback (most recent call last):
   File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
 AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:43:47,223 ERROR: Exception on /user/test [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:43:55,724 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -36,7 +36,8 @@ Traceback (most recent call last):
   File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
 AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:43:51,708 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:44:30,639 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:46]
+2020-04-23 10:44:32,658 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -55,7 +56,7 @@ Traceback (most recent call last):
   File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
 AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:43:53,028 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:44:33,325 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -74,7 +75,7 @@ Traceback (most recent call last):
   File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
 AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:43:54,393 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:44:34,258 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -93,7 +94,7 @@ Traceback (most recent call last):
   File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
 AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:43:55,344 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:44:35,591 ERROR: Exception on /user/test [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -112,3 +113,4 @@ Traceback (most recent call last):
   File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
     posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
 AttributeError: 'function' object has no attribute 'posts'
+2020-04-23 10:45:12,665 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:46]

@@ -1,9 +1,10 @@
 """Plik, w którym znajdują się przekierowania (Route)"""
 from datetime import datetime
 
-from flask import render_template, flash, redirect, url_for, request, g
+from flask import render_template, flash, redirect, url_for, request, g, jsonify
 from flask_babel import get_locale, _
 from flask_login import current_user, login_user, logout_user, login_required
+from guess_language import guess_language
 from werkzeug.urls import url_parse
 
 from app import app, db
@@ -11,6 +12,7 @@ from app.email import send_password_reset_email
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, PostForm, ResetPasswordRequestForm, \
     ResetPasswordForm
 from app.models import User, Post
+from app.translate import translate
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -23,7 +25,10 @@ def index():
     """
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
+        lang = guess_language(form.post.data)
+        if lang == 'UNKNOWN' or len(lang) > 5:
+            lang = ''
+        post = Post(body=form.post.data, author=current_user, language=lang)
         db.session.add(post)
         db.session.commit()
         flash(_('Your post is now live!'))
@@ -211,7 +216,7 @@ def reset_password_request():
         # Ma to na celu zapobiec wycieku informacji, czy rzeczywiście dany klient jest w bazie czy nie
         flash(_('Check your email for the instructions to reset your password'))
         return redirect(url_for('login'))
-    return render_template('reset_password_request.html',  title=_('Reset Password'), form=form)
+    return render_template('reset_password_request.html', title=_('Reset Password'), form=form)
 
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
@@ -233,3 +238,15 @@ def reset_password(token):
         flash(_('Your password has been reset.'))
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
+
+
+@app.route('/translate', methods=['POST'])
+@login_required
+def translate_text():
+    """
+    Wysyła zapytanie do API w celu tłumaczenia tekstu
+    :return: plik JSON z przetłumaczonym tekstem
+    """
+    return jsonify({'text': translate(request.form['text'],
+                                      request.form['source_lang'],
+                                      request.form['dest_lang'])})

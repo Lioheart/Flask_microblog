@@ -1,4 +1,4 @@
-2020-04-23 10:43:55,549 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+2020-04-23 10:45:16,326 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -14,10 +14,26 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:43:55,724 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
+  File "D:\Programowanie\Flask_microblog\app\routes.py", line 103, in user
+    return render_template('user.html', user=user_main, posts=posts, next_url=next_url, prev_url=prev_url)
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "D:\Programowanie\Flask_microblog\app\templates\user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "D:\Programowanie\Flask_microblog\app\templates\base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\Programowanie\Flask_microblog\app\templates\user.html", line 27, in block "content"
+    {% for post in posts %}
+TypeError: 'Pagination' object is not iterable
+2020-04-23 10:45:18,826 ERROR: Exception on /user/test [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
 Traceback (most recent call last):
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
     response = self.full_dispatch_request()
@@ -33,84 +49,69 @@ Traceback (most recent call last):
     return self.view_functions[rule.endpoint](**req.view_args)
   File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
     return func(*args, **kwargs)
-  File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:44:30,639 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:46]
-2020-04-23 10:44:32,658 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:44:33,325 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:44:34,258 ERROR: Exception on /user/susan [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:44:35,591 ERROR: Exception on /user/test [GET] [in d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py:1891]
-Traceback (most recent call last):
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 2446, in wsgi_app
-    response = self.full_dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1951, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1820, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\_compat.py", line 39, in reraise
-    raise value
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1949, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\app.py", line 1935, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask_login\utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "D:\Programowanie\Flask_microblog\app\routes.py", line 100, in user
-    posts = user.posts.order_by(Post.timestamp.desc()).paginate(page, app.config['POSTS_PER_PAGE'], False)
-AttributeError: 'function' object has no attribute 'posts'
-2020-04-23 10:45:12,665 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:46]
+  File "D:\Programowanie\Flask_microblog\app\routes.py", line 103, in user
+    return render_template('user.html', user=user_main, posts=posts, next_url=next_url, prev_url=prev_url)
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\templating.py", line 140, in render_template
+    ctx.app,
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\flask\templating.py", line 120, in _render
+    rv = template.render(context)
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\jinja2\environment.py", line 1090, in render
+    self.environment.handle_exception()
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\jinja2\environment.py", line 832, in handle_exception
+    reraise(*rewrite_traceback_stack(source=source))
+  File "d:\programowanie\flask_microblog\venv\lib\site-packages\jinja2\_compat.py", line 28, in reraise
+    raise value.with_traceback(tb)
+  File "D:\Programowanie\Flask_microblog\app\templates\user.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "D:\Programowanie\Flask_microblog\app\templates\base.html", line 32, in top-level template code
+    {% block content %}{% endblock %}
+  File "D:\Programowanie\Flask_microblog\app\templates\user.html", line 27, in block "content"
+    {% for post in posts %}
+TypeError: 'Pagination' object is not iterable
+2020-04-23 10:46:30,784 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:46]
+2020-04-24 12:43:41,819 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:48]
+2020-04-25 14:20:34,105 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:50]
+2020-04-27 13:06:35,397 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:52]
+2020-04-27 13:07:47,420 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:52]
+2020-04-27 13:10:26,597 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:52]
+2020-04-27 13:12:26,589 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:52]
+2020-04-28 17:51:44,709 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-28 17:52:08,268 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-28 18:08:46,366 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-28 18:09:30,393 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-28 18:09:32,455 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-29 11:20:56,245 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-29 11:22:15,765 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:64]
+2020-04-29 11:27:03,755 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 11:27:13,166 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 11:27:59,560 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 11:28:24,137 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 11:28:48,516 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 11:28:54,060 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 11:29:02,319 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 13:55:59,019 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 13:56:06,350 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 13:56:11,419 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 14:19:39,389 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 14:20:04,231 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:01:46,286 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:01:51,668 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:02:01,657 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:13:45,818 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:16:09,007 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:20:43,089 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:26:09,830 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:36:30,160 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:39:10,179 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:40:27,212 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:51:15,773 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:52:01,067 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:52:43,600 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:56:12,007 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 15:58:14,951 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 16:22:09,948 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 16:22:54,184 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 16:24:41,794 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 16:28:12,227 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 16:28:52,007 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]
+2020-04-29 16:29:19,904 INFO: Microblog startup [in D:\Programowanie\Flask_microblog\app\__init__.py:65]

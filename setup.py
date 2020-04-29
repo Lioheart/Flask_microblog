@@ -8,5 +8,6 @@ setup(
     author='Lioheart',
     python_requires='>=3.7',
     install_requires=['flask', 'python-dotenv', 'email-validator', 'flask-wtf', 'flask-sqlalchemy', 'flask-migrate',
-                      'flask-login', 'flask-mail', 'pyjwt', 'flask-bootstrap', 'flask-moment', 'flask-babel'],
+                      'flask-login', 'flask-mail', 'pyjwt', 'flask-bootstrap', 'flask-moment', 'flask-babel',
+                      'guess_language-spirit', 'requests'],
 )

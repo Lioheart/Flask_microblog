@@ -137,11 +137,13 @@ class Post(db.Model):
     body - ciało, czyli tekst właściwy typu str,
     timestamp - znacznik czasu typu datetime
     user_id - klucz obcy ID tabeli User typu int
+    language - język, w którym napisano post typu string
     """
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    language = db.Column(db.String(5))
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)

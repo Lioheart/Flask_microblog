@@ -7,6 +7,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     """
     Klasa konfiguracyjna, zawierająca SECRET_KEY
+    TRANSLATOR KEY https://translate.yandex.com/developers/keys
     """
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'nigdy-nie-zgadniesz'
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'app.db')
@@ -19,3 +20,4 @@ class Config:
     ADMINS = ['caco7.lioheart@gmail.com', 'zelazek_pawel@wp.pl']
     POSTS_PER_PAGE = 25
     LANGUAGES = ['en', 'pl']
+    TRANSLATOR_KEY = os.environ.get('TRANSLATOR_KEY')
