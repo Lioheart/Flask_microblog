@@ -2,8 +2,7 @@
 import json
 
 import requests
-
-from app import app
+from flask import current_app
 from flask_babel import _
 
 
@@ -19,10 +18,10 @@ def translate(text, source_lang, dest_lang):
         lang = '{}-{}'.format(source_lang, dest_lang)
     else:
         lang = dest_lang
-    path = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key={}&text={}&lang={}'.format(app.config[
+    path = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key={}&text={}&lang={}'.format(current_app.config[
                                                                                                        'TRANSLATOR_KEY'],
                                                                                                    text, lang)
-    if 'TRANSLATOR_KEY' not in app.config or not app.config['TRANSLATOR_KEY']:
+    if 'TRANSLATOR_KEY' not in current_app.config or not current_app.config['TRANSLATOR_KEY']:
         return _('Error: the translation service is not configured.')
     r = requests.get(path)
     if r.status_code != 200:
