@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-04-29 16:30+0200\n"
-"PO-Revision-Date: 2020-04-29 16:32+0200\n"
+"POT-Creation-Date: 2020-05-05 11:52+0200\n"
+"PO-Revision-Date: 2020-05-05 11:53+0200\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: pl <LL@li.org>\n"
@@ -20,159 +20,147 @@ msgstr ""
 "Generated-By: Babel 2.8.0\n"
 "X-Generator: Poedit 2.3\n"
 
-#: app/__init__.py:23
+#: app/__init__.py:21
 msgid "Please log in to access this page."
 msgstr "Aby uzyskać dostęp do tej strony, należy się zalogować."
 
-#: app/email.py:42
+#: app/translate.py:25
+msgid "Error: the translation service is not configured."
+msgstr "Błąd: usługa tłumaczenia nie jest skonfigurowana."
+
+#: app/translate.py:28
+msgid "Error: The translation service failed."
+msgstr "Błąd: Serwis tłumaczeniowy zawiódł."
+
+#: app/auth/email.py:15
 msgid "[Microblog] Reset Your Password"
 msgstr "[Microblog] Resetowanie hasła"
 
-#: app/forms.py:12 app/forms.py:20 app/forms.py:47
+#: app/auth/forms.py:12 app/auth/forms.py:20 app/main/forms.py:13
 msgid "Username"
 msgstr "Użytkownik"
 
-#: app/forms.py:13 app/forms.py:22 app/forms.py:80
+#: app/auth/forms.py:13 app/auth/forms.py:22 app/auth/forms.py:53
 msgid "Password"
 msgstr "Hasło"
 
-#: app/forms.py:14
+#: app/auth/forms.py:14
 msgid "Remember Me"
 msgstr "Zapamiętaj mnie"
 
-#: app/forms.py:15 app/routes.py:65 app/templates/login.html:5
+#: app/auth/forms.py:15 app/auth/routes.py:35 app/templates/auth/login.html:5
 msgid "Sign In"
 msgstr "Zaloguj się"
 
-#: app/forms.py:21 app/forms.py:74
+#: app/auth/forms.py:21 app/auth/forms.py:47
 msgid "Email"
 msgstr "Email"
 
-#: app/forms.py:23 app/forms.py:81
+#: app/auth/forms.py:23 app/auth/forms.py:54
 msgid "Repeat Password"
 msgstr "Powtórz hasło"
 
-#: app/forms.py:24 app/routes.py:94 app/templates/register.html:5
+#: app/auth/forms.py:24 app/auth/routes.py:64 app/templates/auth/register.html:5
 msgid "Register"
 msgstr "Zarejestruj się"
 
-#: app/forms.py:33 app/forms.py:63
+#: app/auth/forms.py:33 app/main/forms.py:29
 msgid "Please use a different username."
 msgstr "Użyj innej nazwy użytkownika."
 
-#: app/forms.py:42
+#: app/auth/forms.py:42
 msgid "Please use a different email address."
 msgstr "Użyj innego adresu e-mail."
 
-#: app/forms.py:48
-msgid "About me"
-msgstr "O mnie"
-
-#: app/forms.py:49 app/forms.py:69
-msgid "Submit"
-msgstr "Zatwierdź"
-
-#: app/forms.py:68
-msgid "Say something new"
-msgstr "Powiedz coś nowego"
-
-#: app/forms.py:75 app/forms.py:82
+#: app/auth/forms.py:48 app/auth/forms.py:55
 msgid "Request Password Reset"
 msgstr "Prośba o zresetowanie hasła"
 
-#: app/routes.py:34
-msgid "Your post is now live!"
-msgstr "Twój wpis jest teraz online!"
-
-#: app/routes.py:40
-msgid "Home Page"
-msgstr "Strona domowa"
-
-#: app/routes.py:58
+#: app/auth/routes.py:28
 msgid "Invalid username or password"
 msgstr "Nieprawidłowa nazwa użytkownika albo hasło"
 
-#: app/routes.py:92
+#: app/auth/routes.py:62
 msgid "Congratulations, you are now a registered user!"
 msgstr "Gratulacje, jesteś teraz zarejestrowanym użytkownikiem!"
 
-#: app/routes.py:137
+#: app/auth/routes.py:83
+msgid "Check your email for the instructions to reset your password"
+msgstr "Sprawdź swój e-mail, aby uzyskać instrukcje dotyczące resetowania hasła"
+
+#: app/auth/routes.py:85 app/templates/auth/reset_password_request.html:5
+msgid "Reset Password"
+msgstr "Resetowanie hasła"
+
+#: app/auth/routes.py:104
+msgid "Your password has been reset."
+msgstr "Twoje hasło zostało zresetowane."
+
+#: app/main/forms.py:14
+msgid "About me"
+msgstr "O mnie"
+
+#: app/main/forms.py:15 app/main/forms.py:35
+msgid "Submit"
+msgstr "Zatwierdź"
+
+#: app/main/forms.py:34
+msgid "Say something new"
+msgstr "Powiedz coś nowego"
+
+#: app/main/forms.py:42 app/main/routes.py:173
+msgid "Search"
+msgstr "Szukaj"
+
+#: app/main/routes.py:32
+msgid "Your post is now live!"
+msgstr "Twój wpis jest teraz online!"
+
+#: app/main/routes.py:38 app/templates/base.html:22
+msgid "Home"
+msgstr "Strona główna"
+
+#: app/main/routes.py:83
 msgid "Your changes have been saved."
 msgstr "Zmiany zostały zapisane."
 
-#: app/routes.py:142 app/templates/edit_profile.html:5
+#: app/main/routes.py:88 app/templates/edit_profile.html:5
 msgid "Edit Profile"
 msgstr "Edycja profilu"
 
-#: app/routes.py:155 app/routes.py:176
+#: app/main/routes.py:101 app/main/routes.py:122
 #, python-format
 msgid "User %(username)s not found."
 msgstr "Użytkownik %(username)s nie został znaleziony."
 
-#: app/routes.py:158
+#: app/main/routes.py:104
 msgid "You cannot follow yourself!"
 msgstr "Nie możesz obserwować samego siebie!"
 
-#: app/routes.py:162
+#: app/main/routes.py:108
 #, python-format
 msgid "You are following %(username)s!"
 msgstr "Obserwujesz %(username)s!"
 
-#: app/routes.py:179
+#: app/main/routes.py:125
 msgid "You cannot unfollow yourself!"
 msgstr "Nie możesz przestać siebie obserwować!"
 
-#: app/routes.py:183
+#: app/main/routes.py:129
 #, python-format
 msgid "You are not following %(username)s."
 msgstr "Przestajesz obserwować %(username)s."
 
-#: app/routes.py:198 app/templates/base.html:23
+#: app/main/routes.py:144 app/templates/base.html:23
 msgid "Explore"
 msgstr "Odkrywaj"
-
-#: app/routes.py:217
-msgid "Check your email for the instructions to reset your password"
-msgstr "Sprawdź swój e-mail, aby uzyskać instrukcje dotyczące resetowania hasła"
-
-#: app/routes.py:219 app/templates/reset_password_request.html:5
-msgid "Reset Password"
-msgstr "Resetowanie hasła"
-
-#: app/routes.py:238
-msgid "Your password has been reset."
-msgstr "Twoje hasło zostało zresetowane."
-
-#: app/translate.py:26
-msgid "Error: the translation service is not configured."
-msgstr "Błąd: usługa tłumaczenia nie jest skonfigurowana."
-
-#: app/translate.py:29
-msgid "Error: The translation service failed."
-msgstr "Błąd: Serwis tłumaczeniowy zawiódł."
-
-#: app/templates/404.html:4
-msgid "File Not Found"
-msgstr "Plik nie odnaleziono"
-
-#: app/templates/404.html:5 app/templates/500.html:6
-msgid "Back"
-msgstr "Cofnij"
-
-#: app/templates/500.html:4
-msgid "An unexpected error has occurred"
-msgstr "Wystąpił nieoczekiwany błąd"
-
-#: app/templates/500.html:5
-msgid "The administrator has been notified. Sorry for the inconvenience!"
-msgstr "Administrator został powiadomiony. Przepraszamy za kłopot!"
 
 #: app/templates/_post.html:14
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s powiedział %(when)s"
 
-#: app/templates/_post.html:21
+#: app/templates/_post.html:25
 msgid "Translate"
 msgstr "Przetłumacz"
 
@@ -180,23 +168,19 @@ msgstr "Przetłumacz"
 msgid "Welcome to Microblog"
 msgstr "Witaj na Microblogu"
 
-#: app/templates/base.html:22
-msgid "Home"
-msgstr "Strona główna"
-
-#: app/templates/base.html:27
+#: app/templates/base.html:36
 msgid "Login"
 msgstr "Logowanie"
 
-#: app/templates/base.html:29
+#: app/templates/base.html:38
 msgid "Profile"
 msgstr "Profil"
 
-#: app/templates/base.html:30
+#: app/templates/base.html:40
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: app/templates/base.html:68
+#: app/templates/base.html:78
 msgid "Error: Could not contact server."
 msgstr "Błąd: Nie można się połączyć z serwerem."
 
@@ -205,33 +189,25 @@ msgstr "Błąd: Nie można się połączyć z serwerem."
 msgid "Hello, %(username)s!"
 msgstr "Witaj, %(username)s!"
 
-#: app/templates/index.html:17 app/templates/user.html:30
+#: app/templates/index.html:17 app/templates/user.html:31
 msgid "Newer posts"
 msgstr "Nowsze posty"
 
-#: app/templates/index.html:22 app/templates/user.html:35
+#: app/templates/index.html:22 app/templates/user.html:36
 msgid "Older posts"
 msgstr "Starsze posty"
 
-#: app/templates/login.html:12
-msgid "New User?"
-msgstr "Nowy użytkownik?"
+#: app/templates/search.html:4
+msgid "Search Results"
+msgstr "Wyniki wyszukiwania"
 
-#: app/templates/login.html:12
-msgid "Click to Register!"
-msgstr "Kliknij, aby się zarejestrować!"
+#: app/templates/search.html:13
+msgid "Previous results"
+msgstr "Poprzednie"
 
-#: app/templates/login.html:14
-msgid "Forgot Your Password?"
-msgstr "Zapomniałeś hasła?"
-
-#: app/templates/login.html:15
-msgid "Click to Reset It"
-msgstr "Kliknij, aby zresetować"
-
-#: app/templates/reset_password.html:5
-msgid "Reset Your Password"
-msgstr "Zresetuj swoje hasło"
+#: app/templates/search.html:18
+msgid "Next results"
+msgstr "Następne"
 
 #: app/templates/user.html:8
 msgid "User"
@@ -241,24 +217,66 @@ msgstr "Użytkownik"
 msgid "Last seen on"
 msgstr "Ostatnio widziany"
 
-#: app/templates/user.html:12
+#: app/templates/user.html:13
 #, python-format
 msgid "%(count)d followers"
 msgstr "%(count)d obserwujących"
 
-#: app/templates/user.html:12
+#: app/templates/user.html:13
 #, python-format
 msgid "%(count)d following"
 msgstr "%(count)d obserwowanych"
 
-#: app/templates/user.html:14
+#: app/templates/user.html:15
 msgid "Edit your profile"
 msgstr "Edytuj swój profil"
 
-#: app/templates/user.html:16
+#: app/templates/user.html:17
 msgid "Follow"
 msgstr "Obserwuj"
 
-#: app/templates/user.html:18
+#: app/templates/user.html:19
 msgid "Unfollow"
 msgstr "Przestań obserwować"
+
+#: app/templates/auth/login.html:12
+msgid "New User?"
+msgstr "Nowy użytkownik?"
+
+#: app/templates/auth/login.html:12
+msgid "Click to Register!"
+msgstr "Kliknij, aby się zarejestrować!"
+
+#: app/templates/auth/login.html:14
+msgid "Forgot Your Password?"
+msgstr "Zapomniałeś hasła?"
+
+#: app/templates/auth/login.html:15
+msgid "Click to Reset It"
+msgstr "Kliknij, aby zresetować"
+
+#: app/templates/auth/reset_password.html:5
+msgid "Reset Your Password"
+msgstr "Zresetuj swoje hasło"
+
+#: app/templates/errors/404.html:4
+msgid "Not Found"
+msgstr "Nie znaleziono"
+
+#: app/templates/errors/404.html:5 app/templates/errors/500.html:6
+msgid "Back"
+msgstr "Cofnij"
+
+#: app/templates/errors/500.html:4
+msgid "An unexpected error has occurred"
+msgstr "Wystąpił nieoczekiwany błąd"
+
+#: app/templates/errors/500.html:5
+msgid "The administrator has been notified. Sorry for the inconvenience!"
+msgstr "Administrator został powiadomiony. Przepraszamy za kłopot!"
+
+#~ msgid "Home Page"
+#~ msgstr "Strona domowa"
+
+#~ msgid "File Not Found"
+#~ msgstr "Plik nie odnaleziono"

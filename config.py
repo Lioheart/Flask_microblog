@@ -24,3 +24,4 @@ class Config:
     POSTS_PER_PAGE = 25
     LANGUAGES = ['en', 'pl']
     TRANSLATOR_KEY = os.environ.get('TRANSLATOR_KEY')
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
