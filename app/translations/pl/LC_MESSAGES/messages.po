@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-05-05 11:52+0200\n"
-"PO-Revision-Date: 2020-05-05 11:53+0200\n"
+"POT-Creation-Date: 2020-05-19 13:47+0200\n"
+"PO-Revision-Date: 2020-05-19 13:50+0200\n"
 "Last-Translator: \n"
 "Language: pl\n"
 "Language-Team: pl <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.3.1\n"
 
 #: app/__init__.py:21
 msgid "Please log in to access this page."
@@ -100,7 +100,7 @@ msgstr "Twoje hasło zostało zresetowane."
 msgid "About me"
 msgstr "O mnie"
 
-#: app/main/forms.py:15 app/main/forms.py:35
+#: app/main/forms.py:15 app/main/forms.py:35 app/main/forms.py:57
 msgid "Submit"
 msgstr "Zatwierdź"
 
@@ -111,6 +111,10 @@ msgstr "Powiedz coś nowego"
 #: app/main/forms.py:42 app/main/routes.py:173
 msgid "Search"
 msgstr "Szukaj"
+
+#: app/main/forms.py:56
+msgid "Message"
+msgstr "Wiadomość"
 
 #: app/main/routes.py:32
 msgid "Your post is now live!"
@@ -155,12 +159,20 @@ msgstr "Przestajesz obserwować %(username)s."
 msgid "Explore"
 msgstr "Odkrywaj"
 
-#: app/templates/_post.html:14
+#: app/main/routes.py:202
+msgid "Your message has been sent."
+msgstr "Twoja wiadomość została wysłana."
+
+#: app/main/routes.py:204
+msgid "Send Message"
+msgstr "Wyślij wiadomość"
+
+#: app/templates/_post.html:16
 #, python-format
 msgid "%(username)s said %(when)s"
 msgstr "%(username)s powiedział %(when)s"
 
-#: app/templates/_post.html:25
+#: app/templates/_post.html:27
 msgid "Translate"
 msgstr "Przetłumacz"
 
@@ -172,15 +184,19 @@ msgstr "Witaj na Microblogu"
 msgid "Login"
 msgstr "Logowanie"
 
-#: app/templates/base.html:38
+#: app/templates/base.html:40 app/templates/messages.html:4
+msgid "Messages"
+msgstr "Wiadomości"
+
+#: app/templates/base.html:43
 msgid "Profile"
 msgstr "Profil"
 
-#: app/templates/base.html:40
+#: app/templates/base.html:45
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: app/templates/base.html:78
+#: app/templates/base.html:83
 msgid "Error: Could not contact server."
 msgstr "Błąd: Nie można się połączyć z serwerem."
 
@@ -189,13 +205,21 @@ msgstr "Błąd: Nie można się połączyć z serwerem."
 msgid "Hello, %(username)s!"
 msgstr "Witaj, %(username)s!"
 
-#: app/templates/index.html:17 app/templates/user.html:31
+#: app/templates/index.html:17 app/templates/user.html:39
 msgid "Newer posts"
 msgstr "Nowsze posty"
 
-#: app/templates/index.html:22 app/templates/user.html:36
+#: app/templates/index.html:22 app/templates/user.html:44
 msgid "Older posts"
 msgstr "Starsze posty"
+
+#: app/templates/messages.html:12
+msgid "Newer messages"
+msgstr "Nowsze wiadomości"
+
+#: app/templates/messages.html:17
+msgid "Older messages"
+msgstr "Starsze wiadomości"
 
 #: app/templates/search.html:4
 msgid "Search Results"
@@ -209,33 +233,42 @@ msgstr "Poprzednie"
 msgid "Next results"
 msgstr "Następne"
 
+#: app/templates/send_message.html:5
+#, python-format
+msgid "Send Message to %(recipient)s"
+msgstr "Wyślij wiadomość do %(recipient)s"
+
 #: app/templates/user.html:8
 msgid "User"
 msgstr "Użytkownik"
 
-#: app/templates/user.html:11
+#: app/templates/user.html:11 app/templates/user_popup.html:13
 msgid "Last seen on"
 msgstr "Ostatnio widziany"
 
-#: app/templates/user.html:13
+#: app/templates/user.html:13 app/templates/user_popup.html:16
 #, python-format
 msgid "%(count)d followers"
 msgstr "%(count)d obserwujących"
 
-#: app/templates/user.html:13
+#: app/templates/user.html:13 app/templates/user_popup.html:17
 #, python-format
 msgid "%(count)d following"
 msgstr "%(count)d obserwowanych"
 
-#: app/templates/user.html:15
+#: app/templates/user.html:18
+msgid "Send private message"
+msgstr "Wyślij prywatną wiadomość"
+
+#: app/templates/user.html:23
 msgid "Edit your profile"
 msgstr "Edytuj swój profil"
 
-#: app/templates/user.html:17
+#: app/templates/user.html:25 app/templates/user_popup.html:21
 msgid "Follow"
 msgstr "Obserwuj"
 
-#: app/templates/user.html:19
+#: app/templates/user.html:27 app/templates/user_popup.html:25
 msgid "Unfollow"
 msgstr "Przestań obserwować"
 

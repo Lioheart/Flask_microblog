@@ -1,8 +1,8 @@
 """Obiektowy model bazy danych SQLAlchemy"""
+import json
 from datetime import datetime
 from hashlib import md5
 from time import time
-from app.search import add_to_index, remove_from_index, query_index
 
 import jwt
 from flask import current_app
@@ -10,6 +10,7 @@ from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app import db, login
+from app.search import add_to_index, remove_from_index, query_index
 
 followers = db.Table(
     'followers',
@@ -69,6 +70,10 @@ class User(UserMixin, db.Model):
     about_me - o mnie typu str
     last_seen - czas ostatniej wizyty typu datetime
     followed - relacja tabeli followers typu db.Table, klucz obcy
+    messages_sent - wiadomości wysłane, klucz obcy
+    messages_received - wiadomości odebrane, klucz obcy
+    last_message_read_time - czas ostatniego odczytania wiadomości
+    notifications - powiadomienia
     """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -85,6 +90,19 @@ class User(UserMixin, db.Model):
         backref=db.backref('followers', lazy='dynamic'),
         lazy='dynamic'
     )
+    messages_sent = db.relationship(
+        'Message',
+        foreign_keys='Message.sender_id',
+        backref='author', lazy='dynamic'
+    )
+    messages_received = db.relationship(
+        'Message',
+        foreign_keys='Message.recipient_id',
+        backref='recipient',
+        lazy='dynamic'
+    )
+    last_message_read_time = db.Column(db.DateTime)
+    notifications = db.relationship('Notification', backref='user', lazy='dynamic')
 
     def set_password(self, password):
         """
@@ -153,6 +171,26 @@ class User(UserMixin, db.Model):
         return jwt.encode({'reset_password': self.id, 'exp': time() + expires_in}, current_app.config['SECRET_KEY'],
                           algorithm='HS256').decode('utf-8')
 
+    def new_messages(self):
+        """
+        Zwraca ilość nieprzeczytanych wiadomości
+        :return: zapytanie query - int
+        """
+        last_read_time = self.last_message_read_time or datetime(1900, 1, 1)
+        return Message.query.filter_by(recipient=self).filter(Message.timestamp > last_read_time).count()
+
+    def add_notification(self, name, data):
+        """
+        Dodaje powiadomienie
+        :param name: nazwa str
+        :param data: dane str
+        :return:
+        """
+        self.notifications.filter_by(name=name).delete()
+        n = Notification(name=name, payload_json=json.dumps(data), user=self)
+        db.session.add(n)
+        return n
+
     @staticmethod
     def verify_reset_password_token(token):
         """
@@ -189,6 +227,48 @@ class Post(SearchableMixin, db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+
+class Message(db.Model):
+    """
+    Klasa reprezentująca tabelę Message (wiadomości). Zawiera:
+    id - ID typu int,
+    sender_id - ID użytkownika wysyłającego, klucz obcy,
+    recipient_id - ID użytkownika docelowego, klucz obcy,
+    body - kolumna z wiadomością typu str
+    timestamp - znacznik czasu typu datetime
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    recipient_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return '<Message {}>'.format(self.body)
+
+
+class Notification(db.Model):
+    """
+    Klasa opisująca powiadomienia o ilości wiadomości. Zawiera:
+    id - ID powiadomień, typu int
+    name - nazwa, typu str
+    user_id - ID użytkownika, którego dotyczą powiadomienia, klucz obcy
+    timestamp - znacznik czasu
+    payload_json - plik JSON
+    """
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.Float, index=True, default=time)
+    payload_json = db.Column(db.Text)
+
+    def get_data(self):
+        """
+        Zwraca wartość w formie pliku JSON
+        :return: JSON
+        """
+        return json.loads(str(self.payload_json))
 
 
 @login.user_loader
